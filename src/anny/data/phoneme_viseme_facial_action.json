@@ -1,0 +1,41 @@
+{
+  "$comment": "Phoneme -> viseme -> facial-action blendshape weight mapping for the RFD 1170 lip-sync stage. Two-stage shape: an ASR/TTS phoneme string picks a viseme, the viseme selects a weighted subset of the 52 facial-action blendshape identifiers ANNY exposes via FACIAL_ACTION_LABELS. Consumer wires viseme weights straight into anny_soma(...) at the frame rate. The mapping is per-frame stateless; blending across frames belongs to the consumer.",
+  "facial_action_reference": "3-interactor/anny/src/anny/models/facial_actions.py FACIAL_ACTION_LABELS (52 entries)",
+  "phoneme_reference": "ARPAbet + IPA hybrid seed; extend as the ASR panel outputs settle. allosaurus universal (RFD 1102 ASR panel row) covers ~700 phones so a real fleet-wide phone inventory replaces this seed in a later refinement.",
+  "weight_sources": "Placeholder weights derived from Oculus Lipsync and Preston Blair (public references); replace with measured or per-language values in a refinement subset. A phoneme that has no weight measured stays in phonemes.<phoneme> under a viseme that is itself defined here rather than being dropped, so a missing measurement is a named gap not a silent one.",
+  "phonemes": {
+    "sil": "sil", "pau": "sil",
+    "aa": "aa", "ah": "aa", "ax": "aa", "hh": "aa",
+    "ae": "e", "eh": "e", "ey": "e",
+    "iy": "ih", "ih": "ih", "y": "ih",
+    "ao": "oh", "ow": "oh",
+    "uw": "ou", "uh": "ou", "w": "ou",
+    "p": "pp", "b": "pp", "m": "pp",
+    "f": "ff", "v": "ff",
+    "th": "th", "dh": "th",
+    "t": "dd", "d": "dd",
+    "n": "nn",
+    "k": "kk", "g": "kk", "ng": "kk",
+    "ch": "ch", "jh": "ch", "sh": "ch", "zh": "ch",
+    "s": "ss", "z": "ss",
+    "r": "rr", "l": "rr",
+    "er": "rr"
+  },
+  "visemes": {
+    "sil": {},
+    "aa": {"jawOpen": 0.9},
+    "e":  {"jawOpen": 0.4, "mouthSmileLeft": 0.3, "mouthSmileRight": 0.3, "mouthStretchLeft": 0.2, "mouthStretchRight": 0.2},
+    "ih": {"jawOpen": 0.25, "mouthSmileLeft": 0.2, "mouthSmileRight": 0.2},
+    "oh": {"jawOpen": 0.6, "mouthPucker": 0.4, "mouthFunnel": 0.3},
+    "ou": {"jawOpen": 0.3, "mouthPucker": 0.7, "mouthFunnel": 0.5},
+    "pp": {"mouthClose": 0.9, "mouthPressLeft": 0.4, "mouthPressRight": 0.4},
+    "ff": {"mouthLowerDownLeft": 0.5, "mouthLowerDownRight": 0.5, "mouthUpperUpLeft": 0.2, "mouthUpperUpRight": 0.2},
+    "th": {"jawOpen": 0.3, "tongueOut": 0.3},
+    "dd": {"jawOpen": 0.2, "mouthPressLeft": 0.3, "mouthPressRight": 0.3},
+    "nn": {"jawOpen": 0.15, "mouthPressLeft": 0.4, "mouthPressRight": 0.4},
+    "kk": {"jawOpen": 0.3, "mouthPressLeft": 0.2, "mouthPressRight": 0.2},
+    "ch": {"jawOpen": 0.35, "mouthFunnel": 0.5, "mouthPucker": 0.3},
+    "ss": {"jawOpen": 0.15, "mouthSmileLeft": 0.3, "mouthSmileRight": 0.3, "mouthStretchLeft": 0.2, "mouthStretchRight": 0.2},
+    "rr": {"jawOpen": 0.25, "mouthPucker": 0.2}
+  }
+}
